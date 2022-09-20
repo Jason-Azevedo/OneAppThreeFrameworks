@@ -6,14 +6,17 @@ import {
   Outlet,
 } from "react-router-dom";
 
+import Home from "./pages/Home";
+import NavbarLayout from "./layouts/NavbarLayout";
+
 import "./sass/main.scss";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Outlet />}>
-          <Route index element={<h1>This is the home page</h1>} />
+        <Route path="/" element={<NavbarLayout />}>
+          <Route index element={<Home />} />
           <Route path="/post" element={<h1>This is the post page</h1>} />
 
           {/* 

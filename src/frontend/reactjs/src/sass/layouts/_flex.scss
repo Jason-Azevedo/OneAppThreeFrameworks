@@ -1,0 +1,16 @@
+.flex {
+  display: flex;
+
+  &-row,
+  &-column {
+    @extend .flex;
+  }
+
+  &-column {
+    flex-direction: column;
+  }
+
+  &.justify-sb {
+    justify-content: space-between;
+  }
+}

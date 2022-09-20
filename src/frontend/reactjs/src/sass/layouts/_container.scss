@@ -1,0 +1,9 @@
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+
+  &--600 {
+    @extend .container;
+    max-width: 600px;
+  }
+}
