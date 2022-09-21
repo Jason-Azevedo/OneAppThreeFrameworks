@@ -1,0 +1,15 @@
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  color: white;
+  background-color: $color-primary;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+  transition: 0.4s;
+
+  &:hover,
+  &:active {
+    background-color: $color-primary-darker;
+  }
+}

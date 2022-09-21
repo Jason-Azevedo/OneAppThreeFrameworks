@@ -1,0 +1,24 @@
+.text-area {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid $color-primary;
+  resize: none;
+
+  padding: 0.4rem;
+  margin: 1rem 0;
+
+  outline: none;
+  color: $color-text;
+  background-color: transparent;
+
+  letter-spacing: 0.01rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3rem;
+
+  &-expanding {
+    @extend .text-area;
+    overflow: hidden;
+    height: 1.3rem;
+  }
+}

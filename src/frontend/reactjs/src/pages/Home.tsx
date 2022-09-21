@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom";
 
+import PostForm from "../components/Forms/PostForm";
+
 export default function Home() {
   return (
     <main className="container--600">
-      <h1>This is the homepage</h1>
+      <PostForm />
     </main>
   );
 }
