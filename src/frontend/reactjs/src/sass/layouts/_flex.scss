@@ -17,4 +17,14 @@
   &.align-c {
     align-items: center;
   }
+
+  /* GAP */
+
+  &.gap--16 {
+    gap: 16px;
+  }
+
+  &.gap--24 {
+    gap: 24px;
+  }
 }

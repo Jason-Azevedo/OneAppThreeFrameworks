@@ -1,0 +1,10 @@
+.icon {
+  & path {
+    fill: $color-primary;
+  }
+
+  &--18 {
+    @extend .icon;
+    @include sameWidthHeight(18px);
+  }
+}
