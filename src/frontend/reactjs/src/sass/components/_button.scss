@@ -7,9 +7,25 @@
   font-weight: 700;
   border: none;
   transition: 0.4s;
+  cursor: pointer;
 
   &:hover,
   &:active {
     background-color: $color-primary-darker;
+  }
+
+  &--dark {
+    @extend .button;
+    background-color: #333333cc;
+    border-radius: 50%;
+    padding: 1rem;
+
+    &:hover {
+      background-color: #333333ea;
+    }
+
+    .icon path {
+      fill: white;
+    }
   }
 }

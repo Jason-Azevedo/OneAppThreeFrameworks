@@ -6,11 +6,37 @@
     font-size: 18px;
   }
 
+  &--16 {
+    @extend .title;
+    font-size: 16px;
+  }
+
+  &--14 {
+    @extend .title;
+    font-size: 14px;
+  }
+
   &.color-primary {
     color: $color-primary;
   }
 
   &.thin {
     font-weight: 400;
+  }
+
+  &.bold {
+    font-weight: 700;
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
+  &.light {
+    color: $color-text-light;
+
+    &-soft {
+      color: $color-text-light-soft;
+    }
   }
 }

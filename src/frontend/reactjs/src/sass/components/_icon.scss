@@ -1,4 +1,8 @@
 .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   & path {
     fill: $color-primary;
   }
@@ -6,5 +10,10 @@
   &--18 {
     @extend .icon;
     @include sameWidthHeight(18px);
+  }
+
+  &--16 {
+    @extend .icon;
+    @include sameWidthHeight(16px);
   }
 }

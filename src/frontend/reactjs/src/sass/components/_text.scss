@@ -1,0 +1,43 @@
+.text {
+  color: $color-text;
+  letter-spacing: 0.01rem;
+
+  &--12 {
+    @extend .text;
+    font-size: 0.75rem;
+  }
+
+  &--14 {
+    @extend .text;
+    font-size: 0.875rem;
+  }
+
+  &--16 {
+    @extend .text;
+    font-size: 1rem;
+  }
+
+  &.error {
+    color: $color-text-error;
+  }
+
+  &.light {
+    color: $color-text-light;
+
+    &-soft {
+      color: $color-text-light-soft;
+    }
+  }
+
+  &.primary {
+    color: $color-primary;
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
+  &.bold {
+    font-weight: 700;
+  }
+}
