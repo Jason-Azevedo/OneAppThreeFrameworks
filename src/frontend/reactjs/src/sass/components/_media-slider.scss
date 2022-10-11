@@ -10,19 +10,29 @@
   }
 
   &-btn {
-    position: absolute;
+    &-back,
+    &-next,
+    &-remove {
+      position: absolute;
+    }
 
-    top: 50%;
-    transform: translateY(-50%);
+    &-back,
+    &-next {
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
     &-back {
-      @extend .media-slider-btn;
       left: 1rem;
     }
 
-    &-next {
-      @extend .media-slider-btn;
+    &-next,
+    &-remove {
       right: 1rem;
+    }
+
+    &-remove {
+      top: 1rem;
     }
   }
 }

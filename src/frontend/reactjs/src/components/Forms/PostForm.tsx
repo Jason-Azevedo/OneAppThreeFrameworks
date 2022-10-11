@@ -6,6 +6,12 @@ import ExpandingTextArea from "../Inputs/ExpandingTextArea";
 import IconFileUploadButton from "../Inputs/IconFileUploadButton";
 import MediaSlider from "../MediaSlider";
 
+const IMAGE_UPLOAD_LIMIT = 5;
+const VIDEO_UPLOAD_LIMIT = 3;
+
+const FILE_IMAGE_TYPE = "image";
+const FILE_VIDEO_TYPE = "video";
+
 export interface IFileURL {
   type: string;
   url: string;
@@ -14,7 +20,7 @@ export interface IFileURL {
 interface IPostFormState {
   post: string;
   files: File[];
-  fileUrls: IFileURL[];
+  fileUrls: IFileURL[]; // For the image slider
 }
 
 export default function PostForm() {
@@ -24,24 +30,67 @@ export default function PostForm() {
     fileUrls: [],
   });
 
-  const onFileUpload = (f: File) => {
-    const type = f.type.split("/")[0];
+  const onFilesUpload = (files: File[]) => {
+    let newFiles = [] as File[];
+    let newFileUrls = [] as IFileURL[];
 
-    // User uploaded another type of file
-    if (type !== "image" && type !== "video") return;
+    let totalImages = getTotalFilesByType(FILE_IMAGE_TYPE);
+    let totalVideos = getTotalFilesByType(FILE_VIDEO_TYPE);
 
-    const url = URL.createObjectURL(f);
+    for (let f of files) {
+      const type = f.type.split("/")[0];
+      const isImage = type === FILE_IMAGE_TYPE;
+      const isVideo = type === FILE_VIDEO_TYPE;
+
+      // User uploaded another type of file
+      if (isImage && isVideo) continue;
+
+      // Are we over the limit for the uploaded file type
+      if (isImage && totalImages >= IMAGE_UPLOAD_LIMIT) continue;
+      if (isVideo && totalVideos >= VIDEO_UPLOAD_LIMIT) continue;
+
+      const url = URL.createObjectURL(f);
+
+      // Adjust the total file count for the new file
+      if (isImage) totalImages++;
+      else totalVideos++;
+
+      newFileUrls.push({ type, url });
+      newFiles.push(f);
+    }
 
     setPost((p) => ({
       ...p,
-      files: [...p.files, f],
-      fileUrls: [...p.fileUrls, { type, url }],
+      files: [...p.files, ...newFiles],
+      fileUrls: [...p.fileUrls, ...newFileUrls],
     }));
   };
-  const onFileRemove = (index: number) => {};
+
+  const onFileRemove = (index: number) => {
+    const newFiles = post.files.filter((e, i) => i !== index);
+    const newFileUrls = post.fileUrls.filter((e, i) => i !== index);
+
+    setPost((p) => ({
+      ...p,
+      files: newFiles,
+      fileUrls: newFileUrls,
+    }));
+  };
+
+  const getTotalFilesByType = (type: "image" | "video") => {
+    let fileCount = 0;
+
+    post.fileUrls.forEach((e) => {
+      if (e.type === type) fileCount++;
+    });
+
+    return fileCount;
+  };
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    // TODO: submit the new post to the backend
   };
 
   return (
@@ -51,7 +100,9 @@ export default function PostForm() {
       </h2>
 
       {/* Preview media content uploads here */}
-      {post.files.length > 0 && <MediaSlider links={post.fileUrls} />}
+      {post.files.length > 0 && (
+        <MediaSlider links={post.fileUrls} onItemRemove={onFileRemove} />
+      )}
 
       <ExpandingTextArea charLimit={240} />
 
@@ -60,16 +111,23 @@ export default function PostForm() {
           <IconFileUploadButton
             icon={<FontAwesomeIcon icon={faImages} className="icon--18" />}
             accept="image/*"
-            onChange={onFileUpload}
+            multiple
+            onChange={onFilesUpload}
           />
-          <span className="text--14">0/10</span>
+          <span className="text--14">
+            {getTotalFilesByType(FILE_IMAGE_TYPE) + "/" + IMAGE_UPLOAD_LIMIT}
+          </span>
 
           <IconFileUploadButton
             icon={<FontAwesomeIcon icon={faVideo} className="icon--18" />}
             accept="video/*"
-            onChange={onFileUpload}
+            multiple
+            onChange={onFilesUpload}
           />
-          <span className="text--14">0/3</span>
+
+          <span className="text--14">
+            {getTotalFilesByType(FILE_VIDEO_TYPE) + "/" + VIDEO_UPLOAD_LIMIT}
+          </span>
         </div>
 
         <button className="button" type="submit">

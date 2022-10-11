@@ -3,12 +3,14 @@ import React from "react";
 interface IIconFileUploadButtonProps {
   accept: string;
   icon: React.ReactNode;
-  onChange: (e: File) => void;
+  multiple?: boolean;
+  onChange: (e: File[]) => void;
 }
 
 export default function IconFileUploadButton({
   accept,
   icon,
+  multiple,
   onChange,
 }: IIconFileUploadButtonProps) {
   return (
@@ -17,9 +19,10 @@ export default function IconFileUploadButton({
       <input
         type="file"
         accept={accept}
+        multiple={multiple}
         onChange={(e) => {
-          // Check for not null file
-          if (e.target.files && e.target.files[0]) onChange(e.target.files[0]);
+          // Check for not null files
+          if (e.target.files) onChange(Array.from(e.target.files));
         }}
       />
     </div>
