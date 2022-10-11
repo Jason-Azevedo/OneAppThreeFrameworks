@@ -3,6 +3,8 @@ import {
   faArrowLeft,
   faArrowRight,
   faX,
+  faCircle,
+  faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -93,7 +95,21 @@ export default function MediaSlider({
       </div>
 
       {/* Current item icon representation */}
-      <div></div>
+      <div className="flex-row justify-c align-c gap--16">
+        {links.map((e, i) =>
+          e.type === "image" ? (
+            <FontAwesomeIcon
+              icon={faCircle}
+              className={`icon--12 ${i === index ? "current" : ""}`}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faPlay}
+              className={`icon--12 ${i === index ? "current" : ""}`}
+            />
+          )
+        )}
+      </div>
     </div>
   );
 }

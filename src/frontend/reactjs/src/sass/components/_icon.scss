@@ -7,6 +7,10 @@
     fill: $color-primary;
   }
 
+  &.current path {
+    fill: $color-primary-lighter;
+  }
+
   &--18 {
     @extend .icon;
     @include sameWidthHeight(18px);
@@ -15,5 +19,15 @@
   &--16 {
     @extend .icon;
     @include sameWidthHeight(16px);
+  }
+
+  &--14 {
+    @extend .icon;
+    @include sameWidthHeight(14px);
+  }
+
+  &--12 {
+    @extend .icon;
+    @include sameWidthHeight(12px);
   }
 }
