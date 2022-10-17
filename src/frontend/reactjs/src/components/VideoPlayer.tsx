@@ -2,6 +2,8 @@ import React from "react";
 import { faExpand, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import VolumeSlider from "./Inputs/Sliders/VolumeSlider";
+
 interface IVideoPlayerProps {}
 
 export default function VideoPlayer({}: IVideoPlayerProps) {
@@ -21,7 +23,8 @@ export default function VideoPlayer({}: IVideoPlayerProps) {
           </div>
 
           {/* Right side controls */}
-          <div>
+          <div className="flex-row gap--16 align-c">
+            <VolumeSlider />
             <FontAwesomeIcon icon={faExpand} className="icon--18" />
           </div>
         </div>
