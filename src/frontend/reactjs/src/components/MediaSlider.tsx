@@ -9,6 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { IFileURL } from "./Forms/PostForm";
+import VideoPlayer from "./VideoPlayer";
 
 interface IMediaSliderProps {
   links: IFileURL[];
@@ -53,7 +54,7 @@ export default function MediaSlider({
     e.type === "image" ? (
       <img className="media-slider-image" src={e.url} />
     ) : (
-      <video src={e.url} />
+      <VideoPlayer />
     )
   );
 

@@ -1,0 +1,28 @@
+.video-player {
+  width: 100%;
+  position: relative;
+
+  &-video {
+    width: 100%;
+  }
+
+  &-controls {
+    width: 100%;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    background-color: #000000b7;
+    padding: 0.5rem 1rem;
+
+    & .icon {
+      padding: 0.5rem;
+      cursor: pointer;
+
+      path {
+        fill: white;
+      }
+    }
+  }
+}
