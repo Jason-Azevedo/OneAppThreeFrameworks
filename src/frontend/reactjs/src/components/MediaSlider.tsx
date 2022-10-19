@@ -101,12 +101,12 @@ export default function MediaSlider({
           e.type === "image" ? (
             <FontAwesomeIcon
               icon={faCircle}
-              className={`icon--12 ${i === index ? "current" : ""}`}
+              className={`icon--12 ${i === index ? "" : "light"}`}
             />
           ) : (
             <FontAwesomeIcon
               icon={faPlay}
-              className={`icon--12 ${i === index ? "current" : ""}`}
+              className={`icon--12 ${i === index ? "" : "light"}`}
             />
           )
         )}
